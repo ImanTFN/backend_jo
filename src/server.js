@@ -14,11 +14,24 @@ import paiementRoutes from "./routes/paiement.route.js";
 
 import adminDashboardRoute from "./routes/admin.routes.js";
 import connAdminRoutes from "./routes/connAdmin.route.js"
-
-
 dotenv.config();
 const app = express();
+// ⚡ Middleware CORS : autoriser ton frontend Vercel
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+}));
 
+// Middleware pour parser le JSON
+app.use(express.json());
+
+
+
+
+// Exemple simple
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Backend fonctionne!" });
+});
 
 //Middlewares de sécurité et de configuration
 app.use(helmet());
@@ -44,8 +57,8 @@ app.get("/api/status", (req, res) => {
 });
 
 // Démarrer le serveur
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}`));
 
 
 export default app;
