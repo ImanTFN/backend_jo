@@ -29,7 +29,7 @@ app.use(express.json());
 
 
 // Exemple simple
-app.get("/api/test", (req, res) => {
+app.get("api/test", (req, res) => {
   res.json({ message: "Backend fonctionne!" });
 });
 
