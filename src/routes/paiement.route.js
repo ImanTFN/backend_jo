@@ -8,6 +8,8 @@ const router = express.Router();
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+const FRONTEND_URL = process.env.FRONTEND_URL ;
+
 // POST /api/paiements/creer-session-paiement
 router.post("/creer-session-paiement", verifieToken, async (req, res) => {
   try {
@@ -50,8 +52,8 @@ router.post("/creer-session-paiement", verifieToken, async (req, res) => {
           quantity: 1
         }
       ],
-      success_url: `http://localhost:5173/succes?cleAchat=${cleAchat}`,
-      cancel_url: "http://localhost:5173/cancel"
+      success_url: `${FRONTEND_URL}/succes?cleAchat=${cleAchat}`,
+      cancel_url: `${FRONTEND_URL}/cancel`
     });
 
     res.json({ url: session.url });
