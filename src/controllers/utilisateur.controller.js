@@ -66,7 +66,7 @@ export const connexionUtilisateur = async (req, res) => {
     );
     res.json({token});
 
-    res.json({ message: "Connexion réussie", token });
+    //res.json({ message: "Connexion réussie", token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Erreur serveur." });
