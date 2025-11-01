@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/server.js",
     "seed": "node prisma/seed.js",
-    "test": "jest",
-  "test:coverage": "jest --coverage"
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+    "test:coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +31,9 @@
     "stripe": "^19.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
